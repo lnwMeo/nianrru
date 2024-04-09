@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index',['count'=>'00535']);
 });
+
+// Route::get('/content', function () {
+//     return 'content';
+// });
+
+Route::view('/content', 'content');
+
+
+
+// Route::get('/', function () {
+//     return view('content',['count'=>'00535']);
+// });

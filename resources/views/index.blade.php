@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nrru IT account</title>
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-</head>
 
+@include('layout.frontend.headder')
+@include('layout.frontend.navbar')
 <body class="bg-hero-bgindex bg-cover">
 
-    @include('layout.frontend.navbar')
 
 
     <!-- section 1 Titel-->
@@ -42,7 +36,7 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 py-16">
 
-                <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
+                <a  class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
                     <img src="{{ asset('assets/images/MCO365.png') }}" class="" alt="logo" />
                 </a>
                 <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
@@ -99,60 +93,59 @@
     @include('layout.frontend.footer')
 
 
-         
 
-<!-- Modal toggle -->
-<!-- <button onclick="openmodel()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-  Toggle modal
-</button> -->
 
-<!-- Main modal -->
-<div id="mymodal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative backdrop-blur-sm bg-indigo-700/10 rounded-lg shadow-lg shadow-blue-600/80">
-            <!-- Modal header -->
-            <div class="p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-2xl font-medium text-gray-900 dark:text-white font-body text-center">
-                    ประกาศ !!
-                </h3>
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5 space-y-4">
-                <div class="flex justify-center">
 
-                    <img class=" w-auto md:w-5/6" src="{{asset('assets/images/you!.png')}}" alt="">
+
+
+
+    <!-- Main modal -->
+    <div id="mymodal" tabindex="-1" aria-hidden="true" class="  backdrop-blur-sm hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative backdrop-blur-sm bg-indigo-700/10 rounded-lg shadow-md shadow-blue-600/80">
+                <!-- Modal header -->
+                <div class="p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-2xl font-medium text-gray-900 dark:text-white font-body text-center">
+                        ประกาศ !!
+                    </h3>
                 </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button onclick="closemodel()" data-modal-hide="default-modal" type="button" class="font-body text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center ">ปิด</button>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <div class="flex justify-center">
+                        <img class=" w-auto md:w-5/6" src="{{asset('assets/images/you!.png')}}" alt="">
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button onclick="closemodel()" data-modal-hide="default-modal" type="button" class="font-body text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center ">ปิด</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-<!-- Modal toggle -->
+    <!-- Modal toggle -->
 
 </body>
 
 </html>
 
 <script>
-    window.onload = function(){
+    window.onload = function() {
         openmodel();
     }
-function openmodel(){
-    var modal=document.getElementById('mymodal');
-    modal.style.display = 'flex';
-}
 
-function closemodel(){
-    var modal=document.getElementById('mymodal');
-    modal.style.display = 'none';
-}
+    function openmodel() {
+        var modal = document.getElementById('mymodal');
+        modal.style.display = 'flex';
+    }
+
+    function closemodel() {
+        var modal = document.getElementById('mymodal');
+        modal.style.display = 'none';
+    }
 </script>
