@@ -13,15 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('index',['count'=>'00535']);
+// });
 Route::get('/', function () {
-    return view('index',['count'=>'00535']);
+    return view('frontend.index');
 });
 
-// Route::get('/content', function () {
-//     return 'content';
-// });
+Route::get('/content', function () {
+    return view('frontend.content');
+});
 
-Route::view('/content', 'content');
+
+Route::get('/dashbord', function () {
+    return view('backend.dashbord');
+});
+
+Route::get('/welcome', function () {
+    return view('backend.sewelcome');
+});
+
+Route::get('/service', function () {
+    return view('backend.seservices');
+});
+
+
 
 
 
