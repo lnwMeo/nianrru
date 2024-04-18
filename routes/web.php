@@ -36,6 +36,23 @@ Route::get('/welcome', function () {
 Route::get('/service', function () {
     return view('backend.seservices');
 });
+Route::get('/mdservice', function () {
+    return view('backend.mdservices');
+});
+
+Route::get('/support', function () {
+    return view('backend.sesupport');
+});
+Route::get('/announce', function () {
+    return view('backend.announce');
+});
+Route::get('/users', function () {
+    return view('backend.users');
+});
+
+Route::get('/LoginAD', function () {
+    return view('Auth.Login');
+});
 
 
 

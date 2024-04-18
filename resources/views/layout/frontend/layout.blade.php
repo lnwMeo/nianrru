@@ -1,4 +1,4 @@
-@include('layout.frontend.headder')
+@include('layout.mainheadder')
 @include('layout.frontend.navbar')
 
 <body class="bg-hero-bgindex bg-cover">
