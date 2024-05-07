@@ -13,7 +13,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/welcome" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
+                        <a href="/Welcome" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
                             <i class="fa-solid fa-house-chimney"></i>
                             <span class="ms-3">ตั้งค่า section Welcome</span>
                         </a>
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="border-t-2 border-indigo-300 ">
-                        <a href="#" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
+                        <a href="/logout'" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span class="ms-3">ออกจากระบบ</span>
                         </a>

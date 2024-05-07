@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexControlle;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +18,34 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('index',['count'=>'00535']);
 // });
-Route::get('/', function () {
-    return view('frontend.index');
-});
-
-Route::get('/content', function () {
-    return view('frontend.content');
-});
 
 
+// index route
+Route::get('/', [IndexControlle::class , 'index']);
+Route::get('/content', [IndexControlle::class , 'contentServices']);
+
+
+
+
+
+// Admin route
 Route::get('/dashbord', function () {
     return view('backend.dashbord');
-});
+})->name('Admindashbord');
 
-Route::get('/welcome', function () {
-    return view('backend.sewelcome');
-});
 
+
+
+//Section Welcome
+Route::get('/Welcome',[WelcomeController::class,'Formwelcome']);
+Route::post('/insert',[WelcomeController::class,'insert']);
+Route::get('/delete/{id}', [WelcomeController::class, 'delete'])->name('delete');
+
+Route::get('/edit/{id}', [WelcomeController::class, 'edit'])->name('edit');
+Route::post('/update/{id}', [WelcomeController::class, 'update'])->name('update');
+
+
+//Section Service
 Route::get('/service', function () {
     return view('backend.seservices');
 });
@@ -40,24 +53,31 @@ Route::get('/mdservice', function () {
     return view('backend.mdservices');
 });
 
+
+//Section Support
 Route::get('/support', function () {
     return view('backend.sesupport');
 });
+
+
+//Announce
 Route::get('/announce', function () {
     return view('backend.announce');
 });
+
+
 Route::get('/users', function () {
     return view('backend.users');
 });
 
-Route::get('/LoginAD', function () {
+
+
+Route::get('/LoginAD',function(){
     return view('Auth.Login');
 });
 
 
 
-
-
-// Route::get('/', function () {
-//     return view('content',['count'=>'00535']);
-// });
+Route::fallback(function () {
+    return view('404');
+});

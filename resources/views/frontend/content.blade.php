@@ -5,11 +5,11 @@
 @section('content')
     <section class="">
         <div class="py-8 px-4 mx-auto my-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="pt-10 ">
-                <a href="" class="text-gray-400 text-lg font-body hover:text-white"><i
+            <div class="pt-10 mb-5">
+                <a href="/" class="text-gray-400 text-lg font-body hover:text-white"><i
                         class="fa-solid fa-arrow-left "></i> กลับหน้าแรก</a>
             </div>
-            <div class="max-w-screen-xl py-2 sm:py-2 lg:py-2 ">
+            <div class="rounded-md max-w-screen-xl py-2 sm:py-2 lg:py-2 p-5 bg-gray-900/50 backdrop-blur-sm">
                 <p class="mb-4 text-4xl tracking-tight font-medium dark:text-white font-body">edurome</p>
                 <p class="mb-4 text-md tracking-tight font-medium dark:text-white font-body">eduroam ย่อมาจาก “educational
                     roaming” ที่จดทะเบียนโดย TERENA ที่ก่อกำเนิดจากเครือข่ายการศึกษาและวิจัยของยุโรป (NRENs)
