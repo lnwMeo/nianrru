@@ -11,6 +11,7 @@ NRRU IT ACCOUNT
             <a href="/mdservice" type="button" class=" px-3 py-2 text-md font-medium text-center text-white bg-green-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "><i class="fa-solid fa-plus"></i> เพิ่ม </a>
         </div>
         <div class="relative overflow-x-auto rounded-md bg-gray-50 p-3">
+@if(count($services)>0)
             <table class="w-full font-body text-md text-left rtl:text-right text-gray-500  ">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                     <tr>
@@ -29,28 +30,35 @@ NRRU IT ACCOUNT
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($services as $itemser)
                     <tr class="bg-white border-b ">
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-800">
-                            <img src="{{ asset('assets/images/VPN.png') }}" class="w-32" alt="">
+                            <img src="{{ $itemser->banner }}" class="w-32" alt="">
                         </td>
                         <td class="px-6 py-4 text-gray-900">
+                            <p class="truncate w-64"> {{ $itemser->linkservice }}</p>
                         </td>
                         <td class="px-6 py-4 text-gray-900">
-                            <p class="truncate w-64"> https://www.youtube.com/watch?v=Z6PQtPL0I6A</p>
+                            {!!Str::limit($itemser->content) !!}
                         </td>
                         <td class="px-6 py-4">
                             <div class="inline-flex">
-                                <button type="button" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></button>
+                                <a type="button"  href="{{route('editsv',$itemser->id)}}" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{route('deletesv',$itemser->id)}}" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
-
-
+                    @endforeach
                 </tbody>
             </table>
+            @else
+            <h2 class="text font-body text-center text-red-700">ไม่มีข้อมูล</h2>
+            @endif
         </div>
 
     </div>
 </div>
+
+
+
 @endsection

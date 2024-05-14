@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
+
    public function Formwelcome()
    {
       $welcomes = Welcome::orderByDesc('id')->get();
       return view('backend.sewelcome', compact('welcomes'));
    }
+
    public function insert(Request $request)
    {
       $request->validate(
@@ -53,12 +55,12 @@ class WelcomeController extends Controller
       return redirect()->back();
    }
 
-
    function edit($id)
    {
       $welcomes = Welcome::find($id);
       return view('backend.seedwelcome', compact('welcomes'));
    }
+   
    function update(Request $request, $id)
    {
       $request->validate(

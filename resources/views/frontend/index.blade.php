@@ -10,14 +10,14 @@ NRRU IT ACCOUNT
             @foreach($welcomes as $itemw)
             <p class="mb-4 text-7xl tracking-tight font-medium text-[#ffe53f] ">{{$itemw->title}}</p>
             <p class="mb-4 text-5xl tracking-tight font-medium dark:text-white">{{$itemw->subheading}}</p>
-            <p class="mb-4 text-xl text-white pt-3 font-body " style="text-indent: 2.5em;">{{$itemw->description}}
+            <p class="mb-4 md:text-md lg:text-xl text-white pt-3 font-body " style="text-indent: 2.5em;">{{$itemw->description}}
             </p>
             <br>
-            <a type="button" href="{{$itemw->links}}"  class="text-white hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900 font-body">
+            <a type="button" href="{{$itemw->links}}" class="text-white  hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900 font-body">
                 วิดีโอแนะนำ IT Account <i class="px-1 fa-regular fa-circle-play"></i></a>
             <button type="button" onclick="window.location.href='#Services'" class="text-white hover:text-white 
                   bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-500 font-medium 
-                 rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 shadow-md shadow-amber-600/40 font-body">
+                 rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 shadow-md shadow-amber-600/40 font-body ">
                 บริการของเรา <i class="px-1 fa-solid fa-forward"></i></button>
         </div>
         @endforeach
@@ -33,55 +33,42 @@ NRRU IT ACCOUNT
         <p class="text-center text-white text-4xl font-medium font-body">Services / บริการของเรา</p>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 py-16">
+            @foreach ($services as $itemse)
 
-            <a href="/content" class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/MCO365.png') }}" class="" alt="logo" />
+            <a href="{{ $itemse->linkservice ?? '/contents/' . $itemse->id }}" class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
+
+                <img src="{{ $itemse->banner }}" class="" alt="logo" />
             </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/Work.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/Nrruwifi.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/mac.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/Eduroam.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/Mail.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/VPN.png') }}" class="" alt="logo" />
-            </a>
-            <a class="flex flex-none bg-bgcard p-3 rounded-md shadow-[0_10px_15px_-2px_rgba(0,0,0,0.3)] shadow-indigo-700/50 hover:shadow-purple-600/60">
-                <img src="{{ asset('assets/images/banner.png') }}" class="" alt="logo" />
-            </a>
+            @endforeach
         </div>
     </div>
 
+
+
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-3 lg:px-6">
         <p class="text-center text-white text-4xl font-medium font-body">I Support / ติดต่อเจ้าหน้าที่</p>
-
+        @foreach($supports as $itemsup)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3 py-16 justify-items-center">
-            <img src="{{ asset('assets/images/LINE IT SUP1.png.jpg') }}" alt="" class="shadow-[0_0px_20px_15px_rgba(0,0,0,0.3)] shadow-indigo-700/50 w-56 ">
-
+            <img src="{{ $itemsup->image }}" alt="" class="shadow-[0_0px_20px_15px_rgba(0,0,0,0.3)] shadow-indigo-700/50 w-56 ">
             <div>
-                <p class="text-white font-body text-xl pt-5">ติดต่อเจ้าหน้าที่ @IT Support Nrru หรือ โทร : 0905982246
+                <p class="text-white font-body text-xl pt-5">
+                    {{$itemsup->contect}}
                 </p>
                 <br>
-                <button type="button" class="text-white hover:text-white 
+                <a href="{{$itemsup->linksp}}" type="button" class="text-white hover:text-white 
                   bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-500 font-medium 
                  rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 shadow-md shadow-amber-600/40 font-body">
                     ลืมรหัสผ่าน คลิกที่นี้
-                </button>
+                </a>
             </div>
         </div>
+        @endforeach
     </div>
 </section>
 
 
+@if(count($announces)>0)
+@foreach($announces as $itemAn)
 <!-- Main modal -->
 <div id="mymodal" tabindex="-1" aria-hidden="true" class="  backdrop-blur-sm hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -96,7 +83,7 @@ NRRU IT ACCOUNT
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <div class="flex justify-center">
-                    <img class=" w-auto md:w-5/6" src="{{ asset('assets/images/you!.png') }}" alt="">
+                    <img class=" w-auto md:w-5/6" src="{{ $itemAn->imgannounce }}" alt="">
                 </div>
             </div>
             <!-- Modal footer -->
@@ -106,6 +93,14 @@ NRRU IT ACCOUNT
         </div>
     </div>
 </div>
+@endforeach
+@else
+<div id="mymodal">
+</div>
+@endif
+
+
+
 @endsection
 
 <!-- Modal toggle -->

@@ -4,7 +4,10 @@
             <img src="{{ asset('assets/images/logo.png') }}" class="h-8" alt="logo" />
         </a>
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
-            <a href="" class="text-md  text-gray-500 dark:text-white hover:underline font-body"><i class="fa-solid fa-eye " style="color: #f5f5f5;"></i> 00340</a>
+          
+            <p class="text-md  text-gray-500 dark:text-white hover:underline font-body"><i class="fa-solid fa-eye " style="color: #f5f5f5;">
+                </i> {{$counts}}</p>
+               
         </div>
     </div>
 </nav>
