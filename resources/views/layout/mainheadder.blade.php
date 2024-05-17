@@ -4,4 +4,19 @@
     <title>@yield('title')</title>
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+
+        .image {
+            max-width: 80%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+          
+        }
+    </style>
 </head>

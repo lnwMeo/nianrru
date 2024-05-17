@@ -43,7 +43,7 @@ NRRU IT ACCOUNT
                         <td class="px-6 py-4">
                             <div class="inline-flex">
                                 <a href="{{route('editsp',$support->id)}}" type="button" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{route('deletesp',$support->id)}}" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
+                                <a href="{{route('deletesp',$support->id)}}" onclick="confirmDeletionsp(event, '{{ $support->id }}')" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -66,6 +66,9 @@ NRRU IT ACCOUNT
                 <!-- <div class="bg-hero-bgindex bg-cover rounded-md  mt-2 flex justify-center">
                     <img src="{{ asset('assets/images/LINE IT SUP1.png.jpg') }}" class="w-32 p-2" alt="">
                 </div> -->
+                <div class="bg-hero-bgindex bg-cover w-64 rounded-md  mt-2 flex justify-center">
+                    <img id="previewImagesp" src="" alt="">
+                </div>
                 <input class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2" id="image" name="image" type="file">
                 @error('image')
                 <div class="font-body text-red-700 text-md">
@@ -96,3 +99,42 @@ NRRU IT ACCOUNT
     </div>
 </div>
 @endsection
+
+<script>
+    const imgss = document.getElementById('image');
+    const previewImagesp = document.getElementById('previewImagesp');
+
+    imgss.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                previewImagesp.src = reader.result;
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    function confirmDeletionsp(event, id) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'คุณแน่ใจหรือไม่?',
+            text: `คุณต้องการลบ ใช่ไหม?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบเลย!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ส่งคำขอลบไปยังเซิร์ฟเวอร์
+                window.location.href = `/deletesp/${id}`;
+            }
+        });
+    }
+
+</script>

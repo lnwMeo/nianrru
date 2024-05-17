@@ -3,6 +3,8 @@
 NRRU IT ACCOUNT
 @endsection
 @section('content')
+
+
 <p class="text-4xl font-body"> ตั้งค่า Section Services</p>
 
 <div class="pt-5">
@@ -11,7 +13,7 @@ NRRU IT ACCOUNT
             <a href="/mdservice" type="button" class=" px-3 py-2 text-md font-medium text-center text-white bg-green-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "><i class="fa-solid fa-plus"></i> เพิ่ม </a>
         </div>
         <div class="relative overflow-x-auto rounded-md bg-gray-50 p-3">
-@if(count($services)>0)
+            @if(count($services)>0)
             <table class="w-full font-body text-md text-left rtl:text-right text-gray-500  ">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                     <tr>
@@ -43,8 +45,8 @@ NRRU IT ACCOUNT
                         </td>
                         <td class="px-6 py-4">
                             <div class="inline-flex">
-                                <a type="button"  href="{{route('editsv',$itemser->id)}}" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{route('deletesv',$itemser->id)}}" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
+                                <a type="button" href="{{route('editsv',$itemser->id)}}" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{route('deletesv',$itemser->id)}}" onclick="confirmDeletionsv(event, '{{ $itemser->id }}')" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -62,3 +64,24 @@ NRRU IT ACCOUNT
 
 
 @endsection
+
+<script>
+    function confirmDeletionsv(event, id) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'คุณแน่ใจหรือไม่?',
+            text: `คุณต้องการลบ ใช่ไหม?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบเลย!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ส่งคำขอลบไปยังเซิร์ฟเวอร์
+                window.location.href = `/deletesv/${id}`;
+            }
+        });
+    }
+</script>

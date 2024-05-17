@@ -1,8 +1,16 @@
-<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen " aria-label="Sidebar">
+<aside id="default-sidebar" class="sidebar md:hitden fixed top-0 left-0 z-40 w-64 h-screen " aria-label="Sidebar">
+
     <div class="h-full bg-hero-bgindex bg-cover px-3 py-4 overflow-y-auto ">
-        <div class="flex justify-center ">
-            <img src="{{ asset('assets/images/logo.png') }}" class="w-32 " alt="">
-        </div>
+        <div class=" text-white text-xl flex justify-between md:justify-center">
+            <div>
+                <img src="{{ asset('assets/images/logo.png') }}" class="w-32 " alt="">
+            </div>
+            <div>
+                <button onclick="openSidebar()" class="sm:hidden pt-2" id="toggle-sidebar">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+            </div>
         <div class="pt-6 ">
             <div class=" rounded-lg">
                 <ul class="space-y-2 font-medium ">
@@ -52,14 +60,18 @@
             </div>
         </div>
     </div>
+
 </aside>
 
 <nav class="p-4 sm:ml-64 shadow-md">
     <div class="flex flex-wrap justify-between mx-auto">
-        <button>
-            <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-
+        <div class="sm:hidden pt-3">
+            <button onclick="openSidebar()" class="" id="toggle-sidebar">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+        <div>
+        </div>
         <div class="p-2 border-2 border-cyan-300 rounded-lg border-solid inline-flex">
             <div class=" self-center ">
                 <img src="{{ asset('assets/images/user.jpg') }}" class="rounded-full w-10 border-2 border-cyan-400" alt="">
@@ -71,3 +83,17 @@
         </div>
     </div>
 </nav>
+
+<script>
+    function openSidebar() {
+        document.querySelector(".sidebar").classList.toggle("hidden");
+    }
+
+    function closeSidebar() {
+        document.querySelector(".sidebar").classList.toggle("none");
+    }
+
+    document.querySelector(".sidebar").addEventListener('click', function() {
+        closeSidebar();
+    });
+</script>

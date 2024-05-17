@@ -9,8 +9,10 @@
                 <a href="/" class="text-gray-400 text-lg font-body hover:text-white"><i
                         class="fa-solid fa-arrow-left "></i> กลับหน้าแรก</a>
             </div>
-            <div class="rounded-md max-w-screen-xl py-2 sm:py-2 lg:py-2 p-5 bg-gray-900/50 backdrop-blur-sm text-white">
-            {{ $contentser->content }}
+            <div class="font-body  rounded-md max-w-screen-xl py-2 sm:py-2 lg:py-2 p-5 bg-gray-900/50 text-white">
+            
+            {!! $contentser->content !!}
+         
             </div>
         </div>
     </section>

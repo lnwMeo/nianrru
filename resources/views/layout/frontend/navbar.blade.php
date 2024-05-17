@@ -1,4 +1,4 @@
-<nav class="backdrop-blur-sm bg-white/10 fixed w-full  ">
+<nav class="backdrop-blur-md  fixed w-full  ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('assets/images/logo.png') }}" class="h-8" alt="logo" />

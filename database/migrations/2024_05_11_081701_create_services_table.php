@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('banner');
-            $table->string('linkservice')->nullable();
+            $table->text('linkservice')->nullable();
             $table->text('content')->nullable();
             $table->timestamps();
         });

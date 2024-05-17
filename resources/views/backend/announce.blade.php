@@ -43,3 +43,23 @@ NRRU IT ACCOUNT
     </div>
 </div>
 @endsection
+<script>
+    function confirmDeletionsp(event, id) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'คุณแน่ใจหรือไม่?',
+            text: `คุณต้องการลบ ใช่ไหม?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบเลย!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ส่งคำขอลบไปยังเซิร์ฟเวอร์
+                window.location.href = `/deletean/${id}`;
+            }
+        });
+    }
+</script>

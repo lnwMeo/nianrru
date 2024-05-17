@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
@@ -11,11 +12,11 @@ module.exports = {
          'body':['Kanit', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-bgindex': "url('/public/assets/images/bg3.png')",
+        'hero-bgindex': "url('/public/assets/images/bg3.webp')",
         'hero-bgindex2': "url('/public/assets/images/bg2.png')",
       },
       colors:{
-        'herologo':'#F1D900',
+        'herologo':'#fec200',
         'footercolor':'#0A0027',
         'bgcard':'#0E0038'
       },

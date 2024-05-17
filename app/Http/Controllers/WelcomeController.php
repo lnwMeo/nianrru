@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Welcome;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WelcomeController extends Controller
 {
@@ -42,8 +43,10 @@ class WelcomeController extends Controller
 
          // dd($data);
          Welcome::insert($data);
+         Alert::success('Success','เพิ่มข้อมูลสำเร็จ');
          return redirect('/Welcome');
       } else {
+         Alert::error('Error','ข้อมูลเต็มแล้ว');
          return redirect('/Welcome');
       }
    }
@@ -52,6 +55,7 @@ class WelcomeController extends Controller
    {
       // dd($id);
       Welcome::find($id)->delete();
+      Alert::success('Success','ลบข้อมูลสำเร็จ');
       return redirect()->back();
    }
 
@@ -88,6 +92,7 @@ class WelcomeController extends Controller
       ];
 
       Welcome::find($id)->update($data);
+      Alert::success('Success','แก้ไขข้อมูลสำเร็จ');
       return redirect('/Welcome');
       // // dd($data);
       // DB::table('blogs')->insert($data);

@@ -4,8 +4,8 @@
             <div class="flex flex-wrap">
                 <div class="w-full p-4 xl:mr-auto xl:w-8/12">
                     <img src="{{ asset('assets/images/logo.png') }}" class="w-32 mb-6" />
-                    <p class="mb-4 text-2xl font-body">งานเครือข่าย สำนักคอมพิวเตอร์</p>
-                    <p class="mb-4 text-base font-body">
+                    <p class="mb-4 text-xl sm:text-xl md:text-2xl lg:text-2xl font-body">งานเครือข่าย สำนักคอมพิวเตอร์</p>
+                    <p class="mb-4 text-sm sm:text-sm md:text-base  lg:text-base font-body">
                         มหาวิทยาลัยราชภัฎนครราชสีมา<br />
                         340 ถ.สุรนารายณ์ ตำบล ในเมือง อำเภอ เมืองนครราชสีมา จังหวัด
                         นครราชสีมา 30000<br />

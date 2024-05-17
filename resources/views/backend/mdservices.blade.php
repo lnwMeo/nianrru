@@ -20,7 +20,6 @@
           @enderror
 
           <p class="text-xl font-body mt-2"> เลือกสิ่งที่ต้องการ แนบลิงค์ หรือ สร้างเนื้อหา </p>
-
           <p class="text-xl font-body  mt-3">ลิงค์</p>
           <input type="text" id="linkservice" name="linkservice" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2  ">
           @error('linkservice')
@@ -63,23 +62,32 @@
           }
       });
 
-   
+
       document.addEventListener('DOMContentLoaded', function() {
-    const linkserviceInput = document.getElementById('linkservice');
-    const contentInput = document.getElementById('content');
+          const linkserviceInput = document.getElementById('linkservice');
+          const contentInput = document.getElementById('content');
 
-    function toggleInputDisable(input, targetInput) {
-        input.addEventListener('input', function() {
-            targetInput.disabled = this.value !== '';
-        });
-    }
+          function toggleInputDisable(input, targetInput) {
+              input.addEventListener('input', function() {
+                  targetInput.disabled = this.value !== '';
+              });
+          }
 
-    toggleInputDisable(linkserviceInput, contentInput);
-    toggleInputDisable(contentInput, linkserviceInput);
-});
-
-
+          toggleInputDisable(linkserviceInput, contentInput);
+          toggleInputDisable(contentInput, linkserviceInput);
+      });
 
 
+
+
+      ClassicEditor
+          .create(document.querySelector('#content'), {
+            ckfinder: {
+                        uploadUrl: "{{ route('upload', ['_token' => csrf_token()]) }}",
+                    }
+          })
+          .catch(error => {
+              console.error(error);
+          });
   </script>
   @endsection

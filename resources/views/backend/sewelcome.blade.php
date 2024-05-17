@@ -49,8 +49,8 @@ NRRU IT ACCOUNT
                         </td>
                         <td class="px-6 py-4">
                             <div class="inline-flex">
-                                <a type="button" href=" {{route('edit',$itemw->id)}}" class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{route('delete',$itemw->id)}}" type="button" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
+                                <a type="button" href=" {{route('edit',$itemw->id)}}"  class=" px-3 py-3 text-sm font-medium text-center text-white bg-amber-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{route('delete',$itemw->id)}}" type="button" onclick="confirmDeletion(event, '{{ $itemw->id }}', '{{ $itemw->title }}')" class="ml-1 px-3 py-3 text-sm font-medium text-center text-white bg-red-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -105,3 +105,25 @@ NRRU IT ACCOUNT
     </div>
 </div>
 @endsection
+
+<script>
+    function confirmDeletion(event, id, title) {
+        event.preventDefault(); // ป้องกันการดำเนินการเริ่มต้นของปุ่ม
+        
+        Swal.fire({
+            title: 'คุณแน่ใจหรือไม่?',
+            text: `คุณต้องการลบ ${title} ใช่ไหม?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบเลย!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ส่งคำขอลบไปยังเซิร์ฟเวอร์
+                window.location.href = `/delete/${id}`;
+            }
+        });
+    }
+</script>

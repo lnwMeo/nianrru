@@ -66,5 +66,16 @@ NRRU IT ACCOUNT
             reader.readAsDataURL(file);
         }
     });
+
+    
+    ClassicEditor
+          .create(document.querySelector('#content'), {
+            ckfinder: {
+                        uploadUrl: "{{ route('upload', ['_token' => csrf_token()]) }}",
+                    }
+          })
+          .catch(error => {
+              console.error(error);
+          });
 </script>
 @endsection

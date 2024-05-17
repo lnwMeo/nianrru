@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Announce;
 
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AnnounceController extends Controller
 {
@@ -46,8 +47,10 @@ class AnnounceController extends Controller
                 'imgannounce' => $filename,
 
             ]);
+            Alert::success('Success', 'เพิ่ม ประกาศสำเร็จ');
             return redirect('/indexannounce');
         } else {
+            Alert::error('Error','ข้อมูลเต็มแล้ว');
             return redirect('/indexannounce');
         }
     }
@@ -65,14 +68,10 @@ class AnnounceController extends Controller
     public function deleteAn($id)
     {
         $announces = Announce::find($id);
-        $image_Path = public_path('/imgAn/' . $announces->imgannounce);
-
-        if (file_exists($image_Path)) {
-
-            unlink($image_Path);
-        }
+        unlink(('imgAn/' . basename($announces->imgannounce)));
         // dd($image_Path);
         $announces->delete();
+        Alert::success('Success', 'ลบ ประกาศสำเร็จ');
         return redirect()->back();
     }
 
@@ -92,8 +91,9 @@ class AnnounceController extends Controller
             $existingService = Announce::find($id);
 
             // ลบรูปภาพเก่าออกจากระบบ
-            if ($existingService->banner) {
-                File::delete(public_path($existingService->imgannounce));
+            if ($existingService->imgannounce) {
+            
+                unlink(('imgAn/' . basename($existingService->imgannounce)));
             }
 
             // อัปโหลดรูปภาพใหม่
@@ -107,6 +107,7 @@ class AnnounceController extends Controller
         Announce::find($id)->update([
             'imgannounce' => $filename,
         ]);
+        Alert::success('Success', 'อัพเดท ประกาศสำเร็จ');
         return redirect('/indexannounce');
     }
 }

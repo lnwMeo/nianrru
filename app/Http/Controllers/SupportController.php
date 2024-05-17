@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Support;
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SupportController extends Controller
 {
@@ -47,8 +48,11 @@ class SupportController extends Controller
                 'contect' => $request->contect,
                 'linksp' => $request->linksp,
             ]);
+            Alert::success('Success', 'เพิ่ม ข้อมูลสำเร็จ');
             return redirect('/support');
+
         } else {
+            Alert::error('Error','ข้อมูลเต็มแล้ว');
             return redirect('/support');
         }
     }
@@ -56,14 +60,10 @@ class SupportController extends Controller
     public function deletesp($id)
     {
         $support = Support::find($id);
-        $image_Path = public_path('/imageuplode/' . $support->image);
-
-        if (file_exists($image_Path)) {
-
-            unlink($image_Path);
-        }
+        unlink(('imageuplode/' . basename($support->image)));
         // dd($image_Path);
         $support->delete();
+        Alert::success('Success', 'ลบ ข้อมูลสำเร็จ');
         return redirect()->back();
     }
 
@@ -102,7 +102,7 @@ class SupportController extends Controller
             'contect' => $request->contect,
             'linksp' => $request->linksp,
         ]);
-
+        Alert::success('Success', 'อัพเดท ข้อมูลสำเร็จ');
         return redirect('/support');
     }
 }

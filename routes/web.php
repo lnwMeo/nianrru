@@ -53,7 +53,8 @@ Route::post('/update/{id}', [WelcomeController::class, 'update'])->name('update'
 //Section Service
 Route::get('/service',[ServiceController::class,'indexservice']);
 Route::get('/mdservice',[ServiceController::class,'Formservice']);
-Route::post('/storeservice',[ServiceController::class,'servicestore']);
+Route::post('/storeservice',[ServiceController::class,'servicestore'])->name('storeservice');
+Route::post('/uploadck',[ServiceController::class,'uploadck'])->name('upload');
 Route::get('/deletesv/{id}',[ServiceController::class,'deletesv'])->name('deletesv');
 Route::get('/editsv/{id}',[ServiceController::class,'edit'])->name('editsv');
 Route::post('/updatesv/{id}', [ServiceController::class, 'update'])->name('updatesv');
