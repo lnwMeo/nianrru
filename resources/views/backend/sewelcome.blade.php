@@ -3,39 +3,39 @@
 NRRU IT ACCOUNT
 @endsection
 @section('content')
-<p class="text-4xl font-body"> ตั้งค่า Section Welcome </p>
+<p class="text-2xl  sm:text-2xl  md:text-4xl lg:text-4xl font-body"> ตั้งค่า Section Welcome </p>
 
 <div class="pt-5">
-    <div class="p-5 mb-4 rounded shadow-lg ">
+    <div class="p-5 mb-4 rounded shadow-md shadow-blue-300 ">
 
         @if(count($welcomes)>0)
         <div class="relative overflow-x-auto rounded-md">
-            <table class="w-full font-body text-md text-left rtl:text-right text-gray-500  ">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
+            <table class="w-full font-body text-base text-left rtl:text-right text-gray-500 border border-blue-900 border-spacing-4">
+                <thead class="text-sm sm:text-base md:text-base lg:text-base text-white  bg-blue-900  ">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 ">
                             หัวเรื่องหลัก
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 ">
                             หัวเรื่องรอง
                         </th>
                         <th scope="col" class="px-6 py-3 ">
                             คำอธิบาย
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 ">
                             ลิงค์ Youtube
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 ">
 
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($welcomes as $itemw)
-                    <tr class="bg-white border-b ">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                    <tr class="bg-white  ">
+                        <td  class="px-6 py-4 text-gray-900 whitespace-nowrap  ">
                             {{$itemw->title}}
-                        </th>
+                        </td>
                         <td class="px-6 py-4 text-gray-900">
                             {{$itemw->subheading}}
                         </td>
@@ -58,41 +58,41 @@ NRRU IT ACCOUNT
                 </tbody>
             </table>
             @else
-            <h2 class="text font-body text-center text-red-700">ไม่มีข้อความ</h2>
+            <h2 class="text-base sm:text-base md:text-base lg:text-base font-body text-center text-red-700">ไม่มีข้อความ</h2>
             @endif
         </div>
 
     </div>
     <div class="p-5 mb-4 rounded shadow-lg ">
-    <p class="text-3xl font-body pb-3">เพิ่ม Section Welcome </p>
+    <p class="text-2xl  sm:text-2xl  md:text-3xl lg:text-3xl font-body pb-3">เพิ่ม Section Welcome </p>
         <div>
             <form method="POST" action="/insert">
                 @csrf
-                <p class="text-xl font-body"> หัวเรื่องหลัก </p>
-                <input type="text" name="title" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2  ">
+                <p class=" text-lg sm:text-lg md:text-xl lg:text-xl font-body"> หัวเรื่องหลัก </p>
+                <input type="text" name="title" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2  ">
                 @error('title')
-                <div class="font-body text-red-700 text-md">
+                <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                     <span>{{$message}}</span>
                 </div>
                 @enderror
-                <p class="text-xl font-body mt-2"> หัวเรื่องรอง </p>
-                <input type="text" name="subheading" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2  ">
+                <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body mt-2"> หัวเรื่องรอง </p>
+                <input type="text" name="subheading" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2  ">
                 @error('subheading')
-                <div class="font-body text-red-700 text-md">
+                <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                     <span>{{$message}}</span>
                 </div>
                 @enderror
-                <p class="text-xl font-body mt-2"> คำอธิบาย </p>
-                <textarea name="description" rows="4" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2 " placeholder="เพิ่มคำอธิบาย..."></textarea>
+                <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body mt-2"> คำอธิบาย </p>
+                <textarea name="description" rows="4" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2 " placeholder="เพิ่มคำอธิบาย..."></textarea>
                 @error('description')
-                <div class="font-body text-red-700 text-md">
+                <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                     <span>{{$message}}</span>
                 </div>
                 @enderror
-                <p class="text-xl font-body mt-2"> ลิงค์ Youtube </p>
-                <input type="text" name="links" id="" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2  ">
+                <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body mt-2"> ลิงค์ Youtube </p>
+                <input type="text" name="links" id="" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2  ">
                 @error('links')
-                <div class="font-body text-red-700 text-md">
+                <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                     <span>{{$message}}</span>
                 </div>
                 @enderror

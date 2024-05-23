@@ -8,34 +8,34 @@ NRRU IT ACCOUNT
 <div class="pt-5">
     <div class="p-5 mb-4 rounded shadow-lg ">
         <div class="p-5 mb-4 rounded shadow-lg ">
-            <p class="text-3xl font-body pb-3"> แก้ไข Section Services </p>
+            <p class="text-2xl  sm:text-2xl  md:text-3xl lg:text-3xl font-body pb-3"> แก้ไข Section Services </p>
             <div>
                 <form method="POST" action="{{route('updatesv',$services->id)}}" enctype="multipart/form-data">
                     @csrf
-                    <p class="text-xl font-body"> รูป banner ( Size 456*134 px ) </p>
+                    <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body"> รูป banner ( Size 456*134 px ) </p>
                     <div class="bg-hero-bgindex bg-cover w-64 rounded-md  mt-2 flex justify-center">
                         <img id="previewImage" src="{{$services->banner}}" alt="">
                     </div>
-                    <input id="banner" name="banner" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2" aria-describedby="user_avatar_help" type="file">
+                    <input id="banner" name="banner" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2" aria-describedby="user_avatar_help" type="file">
                     @error('banner')
-                    <div class="font-body text-red-700 text-md">
+                    <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                         <span>{{$message}}</span>
                     </div>
                     @enderror
-                    <p class="text-xl font-body mt-2"> เลือกสิ่งที่ต้องการ แนบลิงค์ หรือ สร้างเนื้อหา </p>
-                    <p class="text-xl font-body  mt-3">ลิงค์</p>
-                    <input type="text" id="linkservice" value="{{$services->linkservice}}" name="linkservice" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-md rounded-md  block w-full p-2  ">
+                    <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body mt-2"> เลือกสิ่งที่ต้องการ แนบลิงค์ หรือ สร้างเนื้อหา </p>
+                    <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body  mt-3">ลิงค์</p>
+                    <input type="text" id="linkservice" value="{{$services->linkservice}}" name="linkservice" class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2  ">
                     @error('linkservice')
-                    <div class="font-body text-red-700 text-md">
+                    <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                         <span>{{$message}}</span>
                     </div>
                     @enderror
-                    <p class="text-xl font-body mt-3"> เนื้อหา </p>
-                    <textarea id="content" name="content" rows="4" class="font-body bg-hero-bgindex bg-cover mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-white text-md rounded-md  block w-full p-2 " placeholder="เพิ่มคำอธิบาย...">
+                    <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body mt-3"> เนื้อหา </p>
+                    <textarea id="content" name="content" rows="4" class="font-body bg-hero-bgindex bg-cover mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-white text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2 " placeholder="เพิ่มคำอธิบาย...">
                     {{$services->content}}
                     </textarea>
                     @error('content')
-                    <div class="font-body text-red-700 text-md">
+                    <div class="font-body text-red-700 text-base sm:text-base md:text-base lg:text-base">
                         <span>{{$message}}</span>
                     </div>
                     @enderror

@@ -3,7 +3,7 @@
 NRRU IT ACCOUNT
 @endsection
 @section('content')
-<p class="text-4xl font-body"> ตั้งค่า Modal ประกาศ </p>
+<p class="text-2xl  sm:text-2xl  md:text-4xl lg:text-4xl font-body"> ตั้งค่า Modal ประกาศ </p>
 <div class="pt-5">
     <div class="p-5 mb-4 rounded shadow-lg ">
         <div class="mb-4">

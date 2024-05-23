@@ -10,7 +10,7 @@
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
-            </div>
+        </div>
         <div class="pt-6 ">
             <div class=" rounded-lg">
                 <ul class="space-y-2 font-medium ">
@@ -45,13 +45,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/users" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
+                        <a href="{{route('auth.showuser')}}" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
                             <i class="fa-solid fa-user-gear"></i>
                             <span class="ms-3">จัดการ Users</span>
                         </a>
                     </li>
                     <li class="border-t-2 border-indigo-300 ">
-                        <a href="/logout'" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
+                        <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center font-body p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-indigo-950 group">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span class="ms-3">ออกจากระบบ</span>
                         </a>
@@ -72,13 +75,13 @@
         </div>
         <div>
         </div>
-        <div class="p-2 border-2 border-cyan-300 rounded-lg border-solid inline-flex">
+        <div class="p-2 border-2 border-cyan-600 rounded-lg border-solid inline-flex">
             <div class=" self-center ">
-                <img src="{{ asset('assets/images/user.jpg') }}" class="rounded-full w-10 border-2 border-cyan-400" alt="">
+            <img src="{{ Auth::user()->avatar ?? '/avatars/default.gif' }}" class="rounded-full w-10 sm:w-10 md:w-12  " alt="">
             </div>
             <div class="px-2 font-body">
                 <p class="text-md italic font-normal">Welcome !!</p>
-                <p class="italic text-sm">สมศรี เดฟเดฟ</p>
+                <p class="italic text-sm">{{ Auth::user()->username ?? 'Guest' }}</p>
             </div>
         </div>
     </div>

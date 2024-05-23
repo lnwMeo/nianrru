@@ -5,17 +5,18 @@ NRRU IT ACCOUNT
 @section('content')
 
 
-<p class="text-4xl font-body"> ตั้งค่า Section Services</p>
+<p class="text-2xl  sm:text-2xl  md:text-4xl lg:text-4xl font-body"> ตั้งค่า Section Services</p>
 
 <div class="pt-5">
     <div class="p-5 mb-4 rounded shadow-lg ">
         <div class="mb-4">
             <a href="/mdservice" type="button" class=" px-3 py-2 text-md font-medium text-center text-white bg-green-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "><i class="fa-solid fa-plus"></i> เพิ่ม </a>
         </div>
-        <div class="relative overflow-x-auto rounded-md bg-gray-50 p-3">
-            @if(count($services)>0)
-            <table class="w-full font-body text-md text-left rtl:text-right text-gray-500  ">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
+
+        @if(count($services)>0)
+        <div class="relative overflow-x-auto rounded-md mt-3">
+            <table class="w-full font-body text-base text-left rtl:text-right text-gray-500 border border-blue-900 border-spacing-4">
+                <thead class="text-sm sm:text-base md:text-base lg:text-base text-white  bg-blue-900">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             รูป Banner
@@ -33,15 +34,15 @@ NRRU IT ACCOUNT
                 </thead>
                 <tbody>
                     @foreach ($services as $itemser)
-                    <tr class="bg-white border-b ">
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-800">
-                            <img src="{{ $itemser->banner }}" class="w-32" alt="">
+                    <tr class="bg-white text-gray-900">
+                        <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap bg-blue-950">
+                            <img src="{{ $itemser->banner }}" class="w-32 " alt="">
                         </td>
-                        <td class="px-6 py-4 text-gray-900">
-                            <p class="truncate w-64"> {{ $itemser->linkservice }}</p>
+                        <td class="px-6 py-4 ">
+                            <p class="truncate w-64"> {{ Str::limit($itemser->linkservice,20) }}</p>
                         </td>
-                        <td class="px-6 py-4 text-gray-900">
-                            {!!Str::limit($itemser->content) !!}
+                        <td class="px-6 py-4  ">
+                            {!!Str::limit($itemser->content,20) !!}
                         </td>
                         <td class="px-6 py-4">
                             <div class="inline-flex">
@@ -54,7 +55,7 @@ NRRU IT ACCOUNT
                 </tbody>
             </table>
             @else
-            <h2 class="text font-body text-center text-red-700">ไม่มีข้อมูล</h2>
+            <h2 class="text-base sm:text-base md:text-base lg:text-base font-body text-center text-red-700">ไม่มีข้อมูล</h2>
             @endif
         </div>
 

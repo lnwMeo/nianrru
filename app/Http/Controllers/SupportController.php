@@ -10,6 +10,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SupportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function  Formsupport()
     {
         $supports = Support::orderByDesc('id')->get();

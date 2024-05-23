@@ -21,14 +21,14 @@ class UserSeeder extends Seeder
         $data = [
             'username' => 'catcat',
             'email' => 'cat@email.com',
-            'password' => Hash::make('asdf1234'),
+            'password' => Hash::make('gk@asdf1234'),
             'avatar' => 'https://via.placeholder.com/640x480.png/004466?text=animals+omnis',
             'remember_token' => 'BMXkdoajnk'
         ];
 
         User::create($data);
 
-        // เรียก UserFactory 
-        User::factory(3)->create();
+        // // เรียก UserFactory 
+        // // User::factory(3)->create();
     }
 }

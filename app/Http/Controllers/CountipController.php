@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Countip;
 class CountipController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function dashbord(){
        
         $counts = Countip::count();

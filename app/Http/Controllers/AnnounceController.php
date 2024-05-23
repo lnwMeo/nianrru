@@ -10,6 +10,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AnnounceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function indexAn()
     {
         $announces = Announce::orderByDesc('id')->get();

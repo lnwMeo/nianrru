@@ -9,6 +9,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function indexservice()
     {
         $services = Service::orderByDesc('id')->get();

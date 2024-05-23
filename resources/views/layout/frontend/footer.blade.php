@@ -12,9 +12,9 @@
                         เบอร์โทร 044-099099
                     </p>
                     <div>
-                        <a href="#" class="mr-2 text-2xl hover:text-indigo-200"><i class="fab fa-facebook fa-lg"></i>
+                        <a href="https://www.facebook.com/computercenter.nrru?mibextid=ZbWKwL" class="mr-2 text-2xl hover:text-indigo-200"><i class="fab fa-facebook fa-lg"></i>
                         </a>
-                        <a href="#" class="mr-2 text-2xl hover:text-indigo-200"><i class="fab fa-line fa-lg"></i></a>
+                        <a href="https://lin.ee/9TB2Bbi" class="mr-2 text-2xl hover:text-indigo-200"><i class="fab fa-line fa-lg"></i></a>
                     </div>
                 </div>
 
