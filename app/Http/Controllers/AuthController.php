@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -69,8 +70,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate(); 
-        $request->session()->regenerateToken(); 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         Alert::success('Success', 'Logout สำเร็จ');
         return redirect()->route('auth.login');
     }
@@ -128,11 +129,10 @@ class AuthController extends Controller
 
         // จัดการอัพโหลดรูปภาพ
         if ($request->hasFile('avatar')) {
-            $avatarName = time() . '.' . $request->avatar->extension();
-            $request->avatar->move(public_path('avatars'), $avatarName);
-            $user->avatar = '/avatars/' . $avatarName;
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = Storage::url($avatarPath);
         } else {
-            $user->avatar = '/avatars/default.gif'; // Default avatar path
+            $user->avatar = Storage::url('avatars/default.gif'); // Default avatar path
         }
 
         $user->save();
@@ -140,6 +140,7 @@ class AuthController extends Controller
         Alert::success('Success', 'เพิ่ม Users สำเร็จ');
         return redirect()->route('auth.showuser');
     }
+
 
 
     public function DeleteUser($id)
@@ -151,11 +152,9 @@ class AuthController extends Controller
         }
 
         // ลบรูปภาพ avatar ถ้ามี
-        if ($user->avatar && $user->avatar !== '/avatars/default.gif') {
-            $avatarPath = public_path($user->avatar);
-            if (file_exists($avatarPath)) {
-                unlink($avatarPath);
-            }
+        if ($user->avatar && $user->avatar !== Storage::url('avatars/default.gif')) {
+            $avatarPath = str_replace('/storage/', 'public/', $user->avatar);
+            Storage::delete($avatarPath);
         }
 
         $user->delete();
@@ -167,7 +166,7 @@ class AuthController extends Controller
     public function editusers($id)
     {
         $users = User::find($id);
-        return view('backend.edusers',compact('users'));
+        return view('backend.edusers', compact('users'));
     }
 
     public function updateusers(Request $request, $id)
@@ -223,16 +222,13 @@ class AuthController extends Controller
         // จัดการอัพโหลดรูปภาพ
         if ($request->hasFile('avatar')) {
             // ลบรูปภาพเดิมถ้ามี
-            if ($user->avatar && $user->avatar !== '/avatars/default.gif') {
-                $oldAvatarPath = public_path($user->avatar);
-                if (file_exists($oldAvatarPath)) {
-                    unlink($oldAvatarPath);
-                }
+            if ($user->avatar && $user->avatar !== Storage::url('avatars/default.gif')) {
+                $oldAvatarPath = str_replace('/storage/', 'public/', $user->avatar);
+                Storage::delete($oldAvatarPath);
             }
 
-            $avatarName = time().'.'.$request->avatar->extension();
-            $request->avatar->move(public_path('avatars'), $avatarName);
-            $user->avatar = '/avatars/' . $avatarName;
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = Storage::url($avatarPath);
         }
 
         $user->save();

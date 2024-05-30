@@ -9,7 +9,7 @@ NRRU IT ACCOUNT
         <form action="{{route('auth.registerADS')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex items-center">
-                <img class="w-20 rounded-full" src="{{ asset('/avatars/default.gif') }}" alt="Profile Picture" id="previewImage">
+                <img class="w-20 rounded-full" src="{{ asset('/storage/avatars/default.gif') }}" alt="Profile Picture" id="previewImage">
                 <div class="p-5">
                     <p class="text-lg sm:text-lg md:text-xl lg:text-xl font-body">รูปโปรไฟล์</p>
                     <input class="mt-2 bg-gray-50 border border-gray-300  focus:outline-none focus:ring focus:ring-violet-300 text-gray-900 text-base sm:text-base md:text-lg lg:text-lg rounded-md  block w-full p-2" aria-describedby="user_avatar_help" id="avatar" name="avatar" type="file">

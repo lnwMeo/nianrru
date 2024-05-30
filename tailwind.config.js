@@ -12,7 +12,7 @@ module.exports = {
          'body':['Kanit', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-bgindex': "url('/public/assets/images/bg3.webp')",
+        'hero-bgindex': "url('/storage/images/bg3.webp')",
         'hero-bgindex2': "url('/public/assets/images/bg2.png')",
       },
       colors:{

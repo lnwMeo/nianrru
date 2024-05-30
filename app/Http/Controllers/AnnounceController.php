@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Announce;
-
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -36,26 +35,24 @@ class AnnounceController extends Controller
             'imgannounce.required' => 'โปรดใส่รูปประกาศ',
             'imgannounce.max' => 'ขนาดรูปภาพของคุณเกิน 5 MB'
         ]);
-
+    
         if (!Announce::exists()) {
             $filename = '';
-
+    
             if ($request->hasFile('imgannounce')) {
-
-                $filename = $request->getSchemeAndHttpHost() . '/imgAn/' . time() . '.' . $request->imgannounce->extension();
-
-                $request->imgannounce->move(public_path('/imgAn/'), $filename);
+                $filename = 'imgAn/' . time() . '.' . $request->imgannounce->extension();
+                $path = $request->imgannounce->storeAs('public', $filename);
+                $filename = Storage::url($path); // แปลงเส้นทางไฟล์เป็น URL ที่เข้าถึงได้
             }
-
-            // dd($filename);
+    
             Announce::create([
                 'imgannounce' => $filename,
-
             ]);
+    
             Alert::success('Success', 'เพิ่ม ประกาศสำเร็จ');
             return redirect('/indexannounce');
         } else {
-            Alert::error('Error','ข้อมูลเต็มแล้ว');
+            Alert::error('Error', 'ข้อมูลเต็มแล้ว');
             return redirect('/indexannounce');
         }
     }
@@ -73,8 +70,12 @@ class AnnounceController extends Controller
     public function deleteAn($id)
     {
         $announces = Announce::find($id);
-        unlink(('imgAn/' . basename($announces->imgannounce)));
-        // dd($image_Path);
+        $filePath = 'public/imgAn/' . basename($announces->imgannounce);
+    
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+    
         $announces->delete();
         Alert::success('Success', 'ลบ ประกาศสำเร็จ');
         return redirect()->back();
@@ -87,31 +88,30 @@ class AnnounceController extends Controller
         return view('backend.editannounce', compact('announces'));
     }
 
-
     public function updatean(Request $request, $id)
     {
-        $filename = '';
+        $existingService = Announce::find($id);
+        $filename = $existingService->imgannounce; // ใช้รูปภาพเดิมหากไม่มีการส่งรูปภาพใหม่มา
+    
         if ($request->hasFile('imgannounce')) {
-            // ตรวจสอบว่ามีรูปภาพใหม่ถูกส่งมาหรือไม่
-            $existingService = Announce::find($id);
-
             // ลบรูปภาพเก่าออกจากระบบ
             if ($existingService->imgannounce) {
-            
-                unlink(('imgAn/' . basename($existingService->imgannounce)));
+                $oldFilePath = 'public/imgAn/' . basename($existingService->imgannounce);
+                if (Storage::exists($oldFilePath)) {
+                    Storage::delete($oldFilePath);
+                }
             }
-
+    
             // อัปโหลดรูปภาพใหม่
-            $filename = $request->getSchemeAndHttpHost() . '/imgAn/' . time() . '.' . $request->imgannounce->extension();
-            $request->imgannounce->move(public_path('/imgAn/'), $filename);
-        } else {
-            // ใช้รูปภาพเดิมหากไม่มีการส่งรูปภาพใหม่มา
-            $existingService = Announce::find($id);
-            $filename = $existingService->imgannounce;
+            $filename = 'imgAn/' . time() . '.' . $request->imgannounce->extension();
+            $path = $request->imgannounce->storeAs('public', $filename);
+            $filename = Storage::url($path); // แปลงเส้นทางไฟล์เป็น URL ที่เข้าถึงได้
         }
-        Announce::find($id)->update([
+    
+        $existingService->update([
             'imgannounce' => $filename,
         ]);
+    
         Alert::success('Success', 'อัพเดท ประกาศสำเร็จ');
         return redirect('/indexannounce');
     }

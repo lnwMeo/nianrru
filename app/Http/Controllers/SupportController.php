@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Support;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
+
 
 class SupportController extends Controller
 {
@@ -34,29 +36,27 @@ class SupportController extends Controller
             'contect.max' => 'ข้อมูลติดต่อเกิน 50 ตัวอักษร',
             'linksp.required' => 'โปรดแนบลิงค์ที่ต้องการ',
         ]);
-
-        // dd($request->all());
+    
+        // ตรวจสอบว่ามีข้อมูลอยู่ในฐานข้อมูลหรือไม่
         if (!Support::exists()) {
-
-            $filename = '';
-
+            $fileUrl = '';
+    
             if ($request->hasFile('image')) {
-
-                $filename = $request->getSchemeAndHttpHost() . '/imageuplode/' . time() . '.' . $request->image->extension();
-
-                $request->image->move(public_path('/imageuplode/'), $filename);
+                $filename = time() . '.' . $request->image->extension();
+                $path = $request->image->storeAs('public/imageuplode', $filename);
+                $fileUrl = Storage::url($path); // แปลงเป็น URL ที่สามารถเข้าถึงได้
             }
-
+    
             $data = Support::create([
-                'image' => $filename, // เก็บที่อยู่ของไฟล์ภาพ
+                'image' => $fileUrl, // เก็บที่อยู่ของไฟล์ภาพ
                 'contect' => $request->contect,
                 'linksp' => $request->linksp,
             ]);
+    
             Alert::success('Success', 'เพิ่ม ข้อมูลสำเร็จ');
             return redirect('/support');
-
         } else {
-            Alert::error('Error','ข้อมูลเต็มแล้ว');
+            Alert::error('Error', 'ข้อมูลเต็มแล้ว');
             return redirect('/support');
         }
     }
@@ -64,8 +64,16 @@ class SupportController extends Controller
     public function deletesp($id)
     {
         $support = Support::find($id);
-        unlink(('imageuplode/' . basename($support->image)));
-        // dd($image_Path);
+        
+        if ($support && $support->image) {
+            // ลบไฟล์ภาพจากโฟลเดอร์ storage
+            $fileName = 'public/imageuplode/' . basename($support->image);
+            if (Storage::exists($fileName)) {
+                Storage::delete($fileName);
+            }
+        }
+        
+        // ลบข้อมูลจากฐานข้อมูล
         $support->delete();
         Alert::success('Success', 'ลบ ข้อมูลสำเร็จ');
         return redirect()->back();
@@ -80,32 +88,43 @@ class SupportController extends Controller
 
     public function updatesp(Request $request, $id)
     {
-
-        $filename = '';
-
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpg,png|max:5120',
+            'contect' => 'required|max:100',
+            'linksp' => 'required|url'
+        ], [
+            'image.image' => 'ไฟล์ต้องเป็นรูปภาพ',
+            'image.mimes' => 'โปรดใส่รูปภาพประเภท jpg หรือ png',
+            'image.max' => 'ขนาดรูปภาพของคุณเกิน 5 MB',
+            'contect.required' => 'โปรดใส่ข้อมูลติดต่อ',
+            'contect.max' => 'ข้อมูลติดต่อเกิน 100 ตัวอักษร',
+            'linksp.required' => 'โปรดแนบลิงค์ที่ต้องการ',
+        ]);
+    
+        $existingService = Support::find($id);
+        $filename = $existingService->image; // ใช้รูปภาพเดิมหากไม่มีการส่งรูปภาพใหม่มา
+    
         if ($request->hasFile('image')) {
-            // ตรวจสอบว่ามีรูปภาพใหม่ถูกส่งมาหรือไม่
-            $existingService = Support::find($id);
-
             // ลบรูปภาพเก่าออกจากระบบ
-            if ($existingService->banner) {
-                File::delete(public_path($existingService->image));
+            if ($existingService->image) {
+                $oldFilePath = 'public/imageuplode/' . basename($existingService->image);
+                if (Storage::exists($oldFilePath)) {
+                    Storage::delete($oldFilePath);
+                }
             }
-
+    
             // อัปโหลดรูปภาพใหม่
-            $filename = $request->getSchemeAndHttpHost() . '/imageuplode/' . time() . '.' . $request->image->extension();
-            $request->image->move(public_path('/imageuplode/'), $filename);
-        } else {
-            // ใช้รูปภาพเดิมหากไม่มีการส่งรูปภาพใหม่มา
-            $existingService = Support::find($id);
-            $filename = $existingService->image;
+            $filename = 'imageuplode/' . time() . '.' . $request->image->extension();
+            $path = $request->image->storeAs('public', $filename);
+            $filename = Storage::url($path); // แปลงเส้นทางไฟล์เป็น URL ที่เข้าถึงได้
         }
-
-        Support::find($id)->update([
+    
+        $existingService->update([
             'image' => $filename, // เก็บที่อยู่ของไฟล์ภาพ
             'contect' => $request->contect,
             'linksp' => $request->linksp,
         ]);
+    
         Alert::success('Success', 'อัพเดท ข้อมูลสำเร็จ');
         return redirect('/support');
     }
